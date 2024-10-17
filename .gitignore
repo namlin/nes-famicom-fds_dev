@@ -3,3 +3,18 @@
 
 # Rom files:
 *.nes
+
+# Compilation directories:
+bin/
+build/
+
+# Files and directories of metadata of IDE's and text editors:
+.vscode
+.idea/
+*.sublime-workspace
+
+# Metadata files specific of some operating systems:
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
