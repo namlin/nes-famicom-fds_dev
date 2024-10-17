@@ -9,7 +9,7 @@
   LDX #$00
   STX PPUCTRL
   STX PPUMASK
-  ; Clear zerotable
+  ; Clear zerotable.
   LDA #$00
 clear_loop:
   STA $000, X
@@ -24,7 +24,7 @@ clear_loop:
   CPX #$00
   BNE clear_loop
 
-  LDX #$FF  ; reset stack pointer
+  LDX #$FF  ; Reset the stack pointer.
   TXS
 vblankwait:
   BIT PPUSTATUS

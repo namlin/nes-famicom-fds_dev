@@ -4,7 +4,7 @@
 .zeropage
 pointer: .res 2
 temp: .res 1
-; Gamestate status flags
+; Gamestate status flags:
 ; UB-- -P--
 ; |||| ||||
 ; |||| |||+- Undef
@@ -16,7 +16,7 @@ temp: .res 1
 ; +--------- Gamestate update pending
 gamestate: .res 1
 
-; Button flags
+; Button flags:
 ; A B S Sl U D L R
 buttons: .res 1
 

@@ -12,7 +12,5 @@
 # Link:
 
 ```
-../../common/utilities/cc65/ld65 -C cfg/nes.cfg -o hello_world.nes hello_world.o lib/nes.lib
-
+../../common/utilities/cc65/ld65 -C cfg/nes.cfg -o hello_world.nes hello_world.o
 ```
-

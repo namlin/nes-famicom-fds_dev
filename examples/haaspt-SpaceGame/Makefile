@@ -9,7 +9,7 @@ reset.o: src/reset.asm
 	../../common/utilities/cc65/ca65 src/reset.asm
 
 SpaceGame.nes: main.o reset.o
-	../../common/utilities/cc65/ld65 src/*.o -C cfg/nes.cfg -o SpaceGame.nes
+	../../common/utilities/cc65/ld65 *.o -C cfg/nes.cfg -o bin/SpaceGame.nes
 
 clean:
-	rm src/*.o
+	rm -f *.o *.nes
