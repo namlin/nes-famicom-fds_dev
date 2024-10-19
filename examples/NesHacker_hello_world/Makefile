@@ -1,12 +1,23 @@
-all: hello_world.nes
+BIN_DIR = bin
+BUILD_DIR = build
+SRC_DIR = src
 
-build: hello_world.nes
+all: $(BIN_DIR)/hello_world.nes
 
-hello_world.o: src/hello_world.s
-	../../common/utilities/cc65/ca65 src/hello_world.s -o hello_world.o
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
 
-hello_world.nes: hello_world.o
-	../../common/utilities/cc65/ld65 -C cfg/nes.cfg -o hello_world.nes hello_world.o
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+$(BUILD_DIR)/hello_world.o: $(SRC_DIR)/hello_world.s | $(BUILD_DIR)
+	../../common/utilities/cc65/ca65 $(SRC_DIR)/hello_world.s -o $(BUILD_DIR)/hello_world.o
+
+$(BIN_DIR)/hello_world.nes: $(BUILD_DIR)/hello_world.o | $(BIN_DIR)
+	../../common/utilities/cc65/ld65 -C cfg/nes.cfg -o $(BIN_DIR)/hello_world.nes $(BUILD_DIR)/hello_world.o
 
 clean:
-	rm -f *.o *.nes
+	rm -r -f $(BIN_DIR) $(BUILD_DIR)
+
+make: *** No rule to make target 'build/hello_world.o', needed by 'bin/hello_world.nes'.  Stop.
+

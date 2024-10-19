@@ -5,26 +5,31 @@
 # Reference:
 # -https://www.cs.swarthmore.edu/~newhall/unixhelp/howto_makefiles.html
 
-# Makefile variable for the assembler:
-ASSEMBLER = ../../common/utilities/cc65/ca65
+# Makefile variables:
 
-# Makefile variable for the linker:
+# Directories:
+BIN_DIR = bin
+# BUILD_DIR = build
+SRC_DIR = src
+
+# Flags:
+ASMFLAGS = --cpu 6502
+LINKFLAGS = --config config/ines.cfg
+
+# Tools:
+ASSEMBLER = ../../common/utilities/cc65/ca65
 LINKER = ../../common/utilities/cc65/ld65
 
-# Makefile variable for assembly flags:
-ASMFLAGS = --cpu 6502
-
-# Makefile variable for linker flags:
-LINKFLAGS = --config config/ines.cfg
 
 # Simply typing "make" will invoke all suggested targets to build an emulator-ready ROM.
 default: universal-pre-clean assemble link emulator emulator-post-clean
-
-# To start over from scratch, type "make clean".
-clean: universal-pre-clean emulator-post-clean
 	
+
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
+
 # This target entry assembles the .s assembly language files into .o object files.
-assemble: first_nes.s
+assemble: first_nes.s | $(BIN_DIR)
 	$(ASSEMBLER) $(ASMFLAGS) first_nes.s
 
 # This target entry links the .o object files into .bin ROM files.
@@ -46,3 +51,10 @@ universal-pre-clean:
 # This target entry removes the files (.o, .out) not required by emulators.
 emulator-post-clean:
 	$(RM) first_nes.o && $(RM) a.out
+
+# To start over from scratch, type "make clean".
+# clean: universal-pre-clean emulator-post-clean
+clean: universal-pre-clean emulator-post-clean
+	rm -f -r $(BUILD_DIR) $(BIN_DIR)
+
+make: *** No rule to make target 'build', needed by 'assemble'.  Stop.
