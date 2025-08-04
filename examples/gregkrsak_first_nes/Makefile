@@ -17,8 +17,8 @@ ASMFLAGS = --cpu 6502
 LINKFLAGS = --config config/ines.cfg
 
 # Tools:
-ASSEMBLER = ../../common/utilities/cc65/ca65
-LINKER = ../../common/utilities/cc65/ld65
+ASSEMBLER = ca65
+LINKER = ld65
 
 
 # Simply typing "make" will invoke all suggested targets to build an emulator-ready ROM.
